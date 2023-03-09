@@ -8,6 +8,5 @@ export default {
   coverageThreshold: undefined,
   roots: ['<rootDir>/test'],
   transform: { '^.+\\.tsx?$': '@swc/jest' },
-  // testMatch: [''],
   preset: '@shelf/jest-mongodb'
 };
