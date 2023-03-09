@@ -1,6 +1,6 @@
 import { isValidEmail } from '@brazilian-utils/brazilian-utils';
 
-import InvalidError from '../../shared/errors/invalid-field-error';
+import { InvalidFieldError } from '../../shared/errors/invalid-field-error';
 
 export class EmailVO {
   private readonly _value: string;
@@ -12,7 +12,7 @@ export class EmailVO {
 
   private validate() {
     const isValid = isValidEmail(this._value);
-    if (!isValid) throw new InvalidError('E-mail');
+    if (!isValid) throw new InvalidFieldError('E-mail');
   }
 
   get value() {
