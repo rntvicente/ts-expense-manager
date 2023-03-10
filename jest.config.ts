@@ -6,7 +6,7 @@ export default {
   coveragePathIgnorePatterns: ['/node_modules/'],
   coverageReporters: ['json', 'text', 'lcov', 'clover'],
   coverageThreshold: undefined,
-  roots: ['<rootDir>/test'],
+  roots: ['<rootDir>/src'],
   transform: { '^.+\\.tsx?$': '@swc/jest' },
   preset: '@shelf/jest-mongodb'
 };

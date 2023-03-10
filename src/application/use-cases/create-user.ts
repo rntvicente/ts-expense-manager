@@ -1,5 +1,5 @@
 import { MissingParamError } from '../../shared/errors/missing-param-error';
-import { UniqueEntityIdVO } from '../../domains/value-object/unique-entity-id-vo';
+import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
 import { UserModel, UserRepository } from '../repositories/user-repository';
 
 export class CreateUser {

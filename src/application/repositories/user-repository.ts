@@ -1,4 +1,4 @@
-import { UniqueEntityIdVO } from '../../domains/value-object/unique-entity-id-vo';
+import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
 
 export interface UserModel {
   firstName: string;

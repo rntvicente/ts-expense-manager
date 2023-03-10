@@ -1,7 +1,7 @@
-import { MissingParamError } from '../shared/errors/missing-param-error';
+import { MissingParamError } from '../../shared/errors/missing-param-error';
 
-import { EmailVO } from './value-object/email-vo';
-import { UniqueEntityIdVO } from './value-object/unique-entity-id-vo';
+import { EmailVO } from '../../shared/value-object/email-vo';
+import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
 
 export class User {
   private readonly _id: UniqueEntityIdVO;

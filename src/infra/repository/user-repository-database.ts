@@ -3,7 +3,7 @@ import {
   UserModel,
   UserRepository
 } from '../../application/repositories/user-repository';
-import { UniqueEntityIdVO } from '../../domains/value-object/unique-entity-id-vo';
+import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
 
 const COLLECTION_NAME = 'user';
 

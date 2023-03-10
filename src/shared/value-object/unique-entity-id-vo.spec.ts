@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 
-import { UniqueEntityIdVO } from '../../../../src/domains/value-object/unique-entity-id-vo';
+import { UniqueEntityIdVO } from './unique-entity-id-vo';
 
 describe('# Unique Entity ID Test Unit', () => {
   it('should throw error when invalid id', () => {

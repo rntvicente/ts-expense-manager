@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { InvalidUuidError } from '../../shared/errors/invalid-uuid-error';
+import { InvalidUuidError } from '../errors/invalid-uuid-error';
 
 export class UniqueEntityIdVO {
   private readonly _value: string | ObjectId;

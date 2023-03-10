@@ -1,7 +1,7 @@
 import Chance from 'chance';
 
-import { UniqueEntityIdVO } from '../../../../src/domains/value-object/unique-entity-id-vo';
-import { User } from '../../../../src/domains/user-entity';
+import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
+import { User } from './user-entity';
 
 describe('# Entity User Test Unit', () => {
   const chance = Chance();

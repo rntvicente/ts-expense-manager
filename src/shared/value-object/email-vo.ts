@@ -1,6 +1,6 @@
 import { isValidEmail } from '@brazilian-utils/brazilian-utils';
 
-import { InvalidFieldError } from '../../shared/errors/invalid-field-error';
+import { InvalidFieldError } from '../errors/invalid-field-error';
 
 export class EmailVO {
   private readonly _value: string;

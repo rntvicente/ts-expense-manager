@@ -1,6 +1,6 @@
 import Chance from 'chance';
 
-import { EmailVO } from '../../../../src/domains/value-object/email-vo';
+import { EmailVO } from './email-vo';
 
 describe('# Class E-mail Test Unit', () => {
   const chance = Chance();
