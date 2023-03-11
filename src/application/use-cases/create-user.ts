@@ -1,18 +1,24 @@
-import { User } from '../../domains/users/user-entity';
-import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
-
 import { UserRepository } from '../repositories/user-repository';
+import { User } from '../../domains/users/user-entity';
+
+import { Hasher } from '../../shared/interfaces/hasher';
+import { PasswordVO } from '../../shared/value-object/password-vo';
 
 export class CreateUser {
-  constructor(private readonly repository: UserRepository) {}
+  constructor(
+    private readonly repository: UserRepository,
+    private readonly hasher: Hasher
+  ) {}
 
-  async execute(input: Input): Promise<UniqueEntityIdVO> {
+  async execute(input: Input): Promise<string> {
+    const passwordVO = new PasswordVO(input.password, this.hasher);
+    const hashedPassword = await passwordVO.getHashedValue();
+
     const newUser = new User(
-      null,
       input.firstName,
       input.lastName,
       input.email,
-      input.password
+      hashedPassword
     );
 
     return await this.repository.save(newUser);
