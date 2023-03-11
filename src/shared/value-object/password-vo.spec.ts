@@ -11,7 +11,7 @@ describe('# Password Test Unit', () => {
 
   it('should throw error when password empty', () => {
     expect(() => new PasswordVO('', sut)).toThrow(
-      new Error('Missing Param: password')
+      new Error('Invalid Field: password')
     );
   });
 
@@ -34,7 +34,7 @@ describe('# Password Test Unit', () => {
   });
 
   it('should throw error when password not found special char', () => {
-    expect(() => new PasswordVO('P4ssw0rd', sut)).toThrow(
+    expect(() => new PasswordVO('Password1', sut)).toThrow(
       new Error('Invalid Field: password')
     );
   });
