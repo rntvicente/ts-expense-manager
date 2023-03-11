@@ -1,4 +1,4 @@
 export interface HttpServer {
-  start(port: number): Promise<void>;
-  stop(): Promise<void>;
+  on (method: string, url: string, callback: Function): void;
+  listen (port: number): Promise<void>;
 }
