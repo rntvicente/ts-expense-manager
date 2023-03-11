@@ -28,14 +28,8 @@ export class ExpressAdapter implements HttpServer {
     );
   }
 
-  async listen(port: number): Promise<void> {
+  listen(port: number): void {
     this.server = this.app.listen(port);
-
-    await new Promise<void>((resolve) =>
-      this.server.on(
-        `Server starting at ${this.server.address().address}, ${port}`,
-        resolve
-      )
-    );
+    console.info(`Server starting at ${port}`);
   }
 }
