@@ -1,4 +1,4 @@
-import express, { Application } from 'express';
+import express, { Application, Request, Response } from 'express';
 
 import { HttpServer } from './http-server';
 
@@ -11,7 +11,24 @@ export class ExpressAdapter implements HttpServer {
     this.app.use(express.json());
   }
 
-  async start(port: number): Promise<void> {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  on(method: string, url: string, callback: Function): void {
+    this.app[method](
+      url,
+      async function (request: Request, response: Response) {
+        try {
+          const output = await callback(request.params, request.body);
+          response.json(output);
+        } catch (e: any) {
+          response.status(422).json({
+            message: e.message
+          });
+        }
+      }
+    );
+  }
+
+  async listen(port: number): Promise<void> {
     this.server = this.app.listen(port);
 
     await new Promise<void>((resolve) =>
@@ -20,10 +37,5 @@ export class ExpressAdapter implements HttpServer {
         resolve
       )
     );
-  }
-
-  async stop(): Promise<void> {
-    await new Promise<void>((resolve) => this.server.close(resolve));
-    this.server = undefined;
   }
 }
