@@ -1,22 +1,27 @@
-import { MissingParamError } from '../../shared/errors/missing-param-error';
+import { User } from '../../domains/users/user-entity';
 import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
-import { UserModel, UserRepository } from '../repositories/user-repository';
+
+import { UserRepository } from '../repositories/user-repository';
 
 export class CreateUser {
   constructor(private readonly repository: UserRepository) {}
 
-  async execute(input: UserModel): Promise<UniqueEntityIdVO> {
-    this.validate(input);
-    return await this.repository.save(input);
-  }
+  async execute(input: Input): Promise<UniqueEntityIdVO> {
+    const newUser = new User(
+      null,
+      input.firstName,
+      input.lastName,
+      input.email,
+      input.password
+    );
 
-  private validate(input: UserModel) {
-    const fields: string[] = [];
-
-    for (const key in input) {
-      if (!input[key]) fields.push(key);
-    }
-
-    if (fields.length > 0) throw new MissingParamError(fields);
+    return await this.repository.save(newUser);
   }
 }
+
+type Input = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+};
