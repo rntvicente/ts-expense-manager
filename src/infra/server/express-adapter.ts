@@ -28,8 +28,16 @@ export class ExpressAdapter implements HttpServer {
     );
   }
 
+  close(): void {
+    this.server.close();
+  }
+
   listen(port: number): void {
     this.server = this.app.listen(port);
     console.info(`Server starting at ${port}`);
+  }
+
+  getApp() {
+    return this.app;
   }
 }

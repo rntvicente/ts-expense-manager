@@ -4,7 +4,7 @@ import { UserMapper } from '../mappers/user-mapper';
 import { UserRepository } from '../../application/repositories/user-repository';
 import { User } from '../../domains/users/user-entity';
 
-const COLLECTION_NAME = 'user';
+const COLLECTION_NAME = 'users';
 
 export class UserRepositoryDatabase implements UserRepository {
   constructor(private readonly database: MongoHelper) {}
