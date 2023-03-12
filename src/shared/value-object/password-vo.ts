@@ -4,13 +4,11 @@ import { Hasher } from '../../shared/interfaces/hasher';
 
 export class PasswordVO {
   private readonly _value: string;
-  private readonly _createAt: Date;
   private readonly _hasher: Hasher;
 
   constructor(password: string, hasher: Hasher) {
     this._value = password;
     this._hasher = hasher;
-    this._createAt = new Date();
 
     this.validate();
   }
@@ -24,10 +22,6 @@ export class PasswordVO {
 
   private async hash(): Promise<string> {
     return await this._hasher.hash(this._value);
-  }
-
-  get createAt() {
-    return this._createAt;
   }
 
   async getHashedValue(): Promise<string> {
