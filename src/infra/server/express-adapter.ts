@@ -3,17 +3,18 @@ import express, { Application, Request, Response } from 'express';
 import { httpMethod, HttpServer } from './http-server';
 
 export class ExpressAdapter implements HttpServer {
-  private app: Application;
-  private server;
+  private _app: Application;
+  private _server;
 
   constructor() {
-    this.app = express();
-    this.app.use(express.json());
+    this._app = express();
+    this._app.use(express.json());
+    this._app.use(express.urlencoded({ extended: false }));
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
   on(method: httpMethod, url: string, callback: Function): void {
-    this.app[method](url, async function (req: Request, res: Response) {
+    this._app[method](url, async function (req: Request, res: Response) {
       try {
         const { statusCode, body } = await callback(req, res);
         return res.status(statusCode).json(body);
@@ -24,15 +25,15 @@ export class ExpressAdapter implements HttpServer {
   }
 
   close(): void {
-    this.server.close();
+    this._server.close();
   }
 
   listen(port: number): void {
-    this.server = this.app.listen(port);
+    this._server = this._app.listen(port);
     console.info(`Server starting at ${port}`);
   }
 
   getApp() {
-    return this.app;
+    return this._app;
   }
 }
