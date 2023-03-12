@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { User } from '../../domains/users/user-entity';
 import { UserModel } from '../models/user-model';
 
@@ -8,7 +9,7 @@ export class UserMapper {
       userModel.lastName,
       userModel.email,
       userModel.password,
-      userModel.id
+      userModel._id?.toString()
     );
   }
 
@@ -18,7 +19,7 @@ export class UserMapper {
       user.lastName,
       user.email,
       user.password,
-      user.id.toString()
+      new ObjectId(user.id.value)
     );
   }
 }
