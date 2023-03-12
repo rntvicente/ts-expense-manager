@@ -1,5 +1,5 @@
 export interface UserController {
-  create(input: Input): Promise<any>;
+  create(input: Input): Promise<string>;
 }
 
 export type Input = {
