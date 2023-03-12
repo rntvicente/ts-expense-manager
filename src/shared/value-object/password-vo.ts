@@ -1,6 +1,6 @@
 import { InvalidFieldError } from '../errors/invalid-field-error';
 
-import { Hasher } from '../../shared/interfaces/hasher';
+import { Hasher } from '../../infra/encrypter/hasher';
 
 export class PasswordVO {
   private readonly _value: string;

@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 
-import { Hasher } from '../../shared/interfaces/hasher';
+import { Hasher } from './hasher';
 
 export class BcryptHasher implements Hasher {
   private readonly _salt: number;

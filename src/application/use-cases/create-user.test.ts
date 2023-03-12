@@ -2,7 +2,7 @@
 import Chance from 'chance';
 import { ObjectId } from 'mongodb';
 
-import { Hasher } from '../../shared/interfaces/hasher';
+import { Hasher } from '../../infra/encrypter/hasher';
 
 import { UserRepository } from '../../application/repositories/user-repository';
 import { User } from '../../domains/users/user-entity';
