@@ -33,7 +33,7 @@ describe('# Route POST Create User Test Integfration', () => {
   };
 
   beforeAll(async () => {
-    await mongo.connect('mongodb://localhost:27017/ExpensesManager');
+    await mongo.connect(process.env.MONGO_URL);
     collection = await mongo.getCollection(COLLECTION_NAME);
   });
 

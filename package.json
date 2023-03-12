@@ -5,7 +5,7 @@
   "main": "main.ts",
   "scripts": {
     "lint": "npx eslint ./src --ext .ts,.tsx",
-    "test": "jest --passWithNoTests --runInBand --no-cache",
+    "test": "jest --setupFiles dotenv/config --passWithNoTests --runInBand --no-cache",
     "test:unit": "npm test -- --watchAll -c jest-unit-config.ts",
     "test:integration": "npm test -- --watchAll -c jest-integration-config.ts",
     "start": "sucrase-node src/main.ts"
@@ -41,6 +41,7 @@
   "dependencies": {
     "@brazilian-utils/brazilian-utils": "^1.0.0-rc.12",
     "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongodb": "^5.1.0"
   }

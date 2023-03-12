@@ -5,7 +5,7 @@ export default {
       skipMD5: true
     },
     instance: {
-      dbName: '-jest'
+      dbName: 'jest'
     },
     autoStart: false
   }

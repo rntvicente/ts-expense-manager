@@ -8,5 +8,6 @@ export default {
   coverageThreshold: undefined,
   roots: ['<rootDir>/src'],
   transform: { '^.+\\.tsx?$': '@swc/jest' },
-  preset: '@shelf/jest-mongodb'
+  preset: '@shelf/jest-mongodb',
+  setupFiles: ['dotenv/config']
 };
