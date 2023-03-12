@@ -54,7 +54,7 @@ describe('# Route POST Create User Test Integfration', () => {
     const { body: userId } = await request(app.getApp())
       .post('/users')
       .send(input)
-      .expect(200);
+      .expect(201);
 
     expect(userId).toBeDefined();
 

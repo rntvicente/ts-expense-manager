@@ -1,14 +1,15 @@
+import { Request } from 'express';
+
 import { HttpServer } from '../server/http-server';
-import { UserController } from '../../application/constroller/user-constroller';
+import { Controller } from '../controller/handle';
 
 export class UserRoute {
   constructor(
     readonly httpServer: HttpServer,
-    readonly userController: UserController
+    readonly controller: Controller
   ) {
-    httpServer.on('post', '/users', async function (params, body) {
-      const output = await userController.create(body);
-      return output;
+    httpServer.on('post', '/users', async function ({ body }: Request) {
+      return await controller.handle({ body });
     });
   }
 }

@@ -1,13 +1,14 @@
-import { CreateUser } from '../../application/use-cases/create-user';
-import {
-  Input,
-  UserController
-} from '../../application/constroller/user-constroller';
+import { HttpRequest, HttpResponse } from '../server/http';
 
-export class UserControllerAdapter implements UserController {
+import { CreateUser } from '../../application/use-cases/create-user';
+import { Controller } from './handle';
+
+export class UserControllerAdapter implements Controller {
   constructor(private readonly createUser: CreateUser) {}
 
-  async create(input: Input): Promise<string> {
-    return await this.createUser.execute(input);
+  async handle({ body }: HttpRequest): Promise<HttpResponse> {
+    const userId = await this.createUser.execute(body);
+
+    return { statusCode: 201, body: userId };
   }
 }

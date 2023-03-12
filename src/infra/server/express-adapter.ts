@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 
-import { HttpServer } from './http-server';
+import { httpMethod, HttpServer } from './http-server';
 
 export class ExpressAdapter implements HttpServer {
   private app: Application;
@@ -12,20 +12,15 @@ export class ExpressAdapter implements HttpServer {
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types
-  on(method: string, url: string, callback: Function): void {
-    this.app[method](
-      url,
-      async function (request: Request, response: Response) {
-        try {
-          const output = await callback(request.params, request.body);
-          response.json(output);
-        } catch (e: any) {
-          response.status(422).json({
-            message: e.message
-          });
-        }
+  on(method: httpMethod, url: string, callback: Function): void {
+    this.app[method](url, async function (req: Request, res: Response) {
+      try {
+        const { statusCode, body } = await callback(req, res);
+        return res.status(statusCode).json(body);
+      } catch (error) {
+        res.status(422).json({ message: error.message });
       }
-    );
+    });
   }
 
   close(): void {
