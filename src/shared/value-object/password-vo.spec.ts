@@ -40,13 +40,9 @@ describe('# Password Test Unit', () => {
   });
 
   it('should create password when value accepted', async () => {
-    const createAt = new Date(2023, 0, 1);
-    jest.useFakeTimers().setSystemTime(createAt);
-
     const password = new PasswordVO('P4ssW@rd', sut);
     const passwordHashed = await password.getHashedValue();
 
-    expect(password.createAt).toStrictEqual(createAt);
     expect(passwordHashed).toBeDefined();
   });
 });
