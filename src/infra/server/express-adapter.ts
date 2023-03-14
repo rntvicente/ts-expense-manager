@@ -1,5 +1,4 @@
 import express, { Application, Request, Response } from 'express';
-import * as passport from 'passport';
 
 import { httpMethod, HttpServer } from './http-server';
 
@@ -11,7 +10,6 @@ export class ExpressAdapter implements HttpServer {
     this._app = express();
     this._app.use(express.json());
     this._app.use(express.urlencoded({ extended: false }));
-    this._app.use(passport.authenticate('session'));
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-types

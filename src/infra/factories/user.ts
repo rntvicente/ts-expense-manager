@@ -5,8 +5,7 @@ import { UserControllerAdapter } from '../controller/user-controller-adapter';
 import { BcryptHasher } from '../encrypter/bcrypt-hasher';
 import { UserRepositoryDatabase } from '../repository/user-repository-database';
 
-export const makeCreateUserController = (): UserControllerAdapter => {
-  const database = new MongoHelper();
+export const makeCreateUserController = (database: MongoHelper): UserControllerAdapter => {
   const bcrypterHasher = new BcryptHasher(12);
   const userRepository = new UserRepositoryDatabase(database);
   const createUser = new CreateUser(userRepository, bcrypterHasher);

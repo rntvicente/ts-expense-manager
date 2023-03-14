@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Chance from 'chance';
-import { ObjectId } from 'mongodb';
+import { Document, Filter, FindOptions, ObjectId } from 'mongodb';
 
 import { Hasher } from '../../infra/encrypter/hasher';
 
 import { UserRepository } from '../../application/repositories/user-repository';
 import { User } from '../../domains/users/user-entity';
+import { UserModel } from '../../infra/models/user-model';
 
 import { CreateUser } from './create-user';
 
@@ -13,6 +14,13 @@ const chance = Chance();
 
 const makeRepository = (mongoId: ObjectId): UserRepository => {
   class UserRepositoryStub implements UserRepository {
+    async findOne(
+      filter: Filter<Document>,
+      options?: FindOptions<Document> | undefined
+    ): Promise<UserModel | null> {
+      throw new Error('Method not implemented.');
+    }
+
     async save(user: User): Promise<string> {
       return new Promise((resolve) => resolve(mongoId.toString()));
     }

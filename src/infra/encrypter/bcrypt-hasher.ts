@@ -14,7 +14,7 @@ export class BcryptHasher implements Hasher {
     return hash;
   }
 
-  async compare(plaintext: string, hash: string): Promise<boolean> {
-    return bcrypt.compare(plaintext, hash);
+  async compare(plaintext: string, encrypted: string): Promise<boolean> {
+    return bcrypt.compare(plaintext, encrypted);
   }
 }

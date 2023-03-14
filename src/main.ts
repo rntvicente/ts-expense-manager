@@ -15,7 +15,7 @@ database
   .then(() => {
     console.info('Database connected.');
 
-    new UserRoute(app, makeCreateUserController());
+    new UserRoute(app, makeCreateUserController(database));
     app.listen(process.env.PORT);
   })
   .catch((error) => {

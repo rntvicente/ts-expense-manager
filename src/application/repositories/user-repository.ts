@@ -7,6 +7,6 @@ export interface UserRepository {
   save(user: User): Promise<string>;
   findOne(
     filter: Filter<Document>,
-    optins: FindOptions<Document>
+    options?: FindOptions<Document>
   ): Promise<UserModel | null>;
 }

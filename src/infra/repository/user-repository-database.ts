@@ -14,10 +14,10 @@ export class UserRepositoryDatabase implements UserRepository {
 
   async findOne(
     filter: Filter<Document>,
-    optins: FindOptions<Document>
+    options?: FindOptions<Document>
   ): Promise<UserModel | null> {
     const collection = await this.database.getCollection(COLLECTION_NAME);
-    return await collection.findOne<UserModel | null>(filter, optins);
+    return await collection.findOne<UserModel | null>(filter, options);
   }
 
   async save(user: User): Promise<string> {
