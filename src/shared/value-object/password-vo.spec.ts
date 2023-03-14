@@ -1,46 +1,40 @@
-import { BcryptHasher } from '../../infra/encrypter/bcrypt-hasher';
-
 import { PasswordVO } from './password-vo';
 
-const makeSut = (): BcryptHasher => {
-  return new BcryptHasher(10);
-};
+const SALT = 10
 
 describe('# Password Test Unit', () => {
-  const sut = makeSut();
-
   it('should throw error when password empty', () => {
-    expect(() => new PasswordVO('', sut)).toThrow(
+    expect(() => new PasswordVO('', SALT)).toThrow(
       new Error('Invalid Field: password')
     );
   });
 
   it('should throw error when password less 8 char', () => {
-    expect(() => new PasswordVO('123', sut)).toThrow(
+    expect(() => new PasswordVO('123', SALT)).toThrow(
       new Error('Invalid Field: password')
     );
   });
 
   it('should throw error when password not found uppercase', () => {
-    expect(() => new PasswordVO('password', sut)).toThrow(
+    expect(() => new PasswordVO('password', SALT)).toThrow(
       new Error('Invalid Field: password')
     );
   });
 
   it('should throw error when password not found number', () => {
-    expect(() => new PasswordVO('Password', sut)).toThrow(
+    expect(() => new PasswordVO('Password', SALT)).toThrow(
       new Error('Invalid Field: password')
     );
   });
 
   it('should throw error when password not found special char', () => {
-    expect(() => new PasswordVO('Password1', sut)).toThrow(
+    expect(() => new PasswordVO('Password1', SALT)).toThrow(
       new Error('Invalid Field: password')
     );
   });
 
   it('should create password when value accepted', async () => {
-    const password = new PasswordVO('P4ssW@rd', sut);
+    const password = new PasswordVO('P4ssW@rd', SALT);
     const passwordHashed = await password.getHashedValue();
 
     expect(passwordHashed).toBeDefined();
