@@ -1,6 +1,6 @@
 import { HttpRequest, HttpResponse } from '../server/http';
 
-import { CreateUser } from '../../application/use-cases/create-user';
+import { CreateUser } from '../../application/use-cases/signup';
 import { Controller } from './handle';
 
 export class UserControllerAdapter implements Controller {

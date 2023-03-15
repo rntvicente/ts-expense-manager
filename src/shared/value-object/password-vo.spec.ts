@@ -1,6 +1,6 @@
 import { PasswordVO } from './password-vo';
 
-const SALT = 10
+const SALT = 10;
 
 describe('# Password Test Unit', () => {
   it('should throw error when password empty', () => {
@@ -34,9 +34,25 @@ describe('# Password Test Unit', () => {
   });
 
   it('should create password when value accepted', async () => {
-    const password = new PasswordVO('P4ssW@rd', SALT);
-    const passwordHashed = await password.getHashedValue();
+    const password = new PasswordVO('P4ssW@rd');
+    const passwordHashed = await password.create();
 
     expect(passwordHashed).toBeDefined();
+  });
+
+  it('should return true when password is equal value encrypt', async () => {
+    const password = new PasswordVO('P4ssW@rd');
+    const storedHash = await password.create();
+
+    const isValid = await password.verify(storedHash);
+    expect(isValid).toBeTruthy();
+  });
+
+  it('should return false when password diff value encrypt', async () => {
+    const password = new PasswordVO('P4ssW@rd');
+    await password.create();
+
+    const isValid = await password.verify('invalid_hash');
+    expect(isValid).toBeFalsy();
   });
 });

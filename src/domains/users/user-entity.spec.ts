@@ -10,7 +10,7 @@ describe('# Entity User Test Unit', () => {
   const firstName = chance.first({ nationality: 'it' });
   const lastName = chance.last({ nationality: '*' });
   const email = chance.email();
-  const password = chance.hash();
+  const password = 'P4ssw@rd';
 
   it('should throw error when not informe firstname', () => {
     expect(() => new User('', lastName, email, password, id)).toThrow(
@@ -42,13 +42,14 @@ describe('# Entity User Test Unit', () => {
     expect(user.id).toBeInstanceOf(UniqueEntityIdVO);
   });
 
-  it('should create User when informed id', () => {
+  it('should create User when informed id', async () => {
     const user = new User(firstName, lastName, email, password, id);
+    const hashedPassword = await user.getPassword();
 
     expect(user.id.toString()).toStrictEqual(id);
     expect(user.firstname).toStrictEqual(firstName);
     expect(user.lastName).toStrictEqual(lastName);
-    expect(user.password).toStrictEqual(password);
+    expect(hashedPassword).toBeDefined();
     expect(user.email).toStrictEqual(email);
     expect(user.fullName).toStrictEqual(`${firstName} ${lastName}`);
   });

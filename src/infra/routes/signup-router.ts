@@ -8,7 +8,7 @@ export class UserRoute {
     readonly httpServer: HttpServer,
     readonly controller: Controller
   ) {
-    httpServer.on('post', '/users', async function ({ body }: Request) {
+    httpServer.on('post', '/signup', async function ({ body }: Request) {
       return await controller.handle({ body });
     });
   }

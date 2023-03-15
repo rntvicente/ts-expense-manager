@@ -2,6 +2,7 @@ import { MissingParamError } from '../../shared/errors/missing-param-error';
 
 import { EmailVO } from '../../shared/value-object/email-vo';
 import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
+import { PasswordVO } from '../../shared/value-object/password-vo';
 
 export class User {
   private readonly _id: UniqueEntityIdVO;
@@ -48,8 +49,9 @@ export class User {
     return this._email.value;
   }
 
-  get password() {
-    return this._password;
+  async getPassword() {
+    const passwordVO = new PasswordVO(this._password);
+    return await passwordVO.create();
   }
 
   get fullName() {

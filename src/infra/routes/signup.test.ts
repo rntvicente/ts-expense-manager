@@ -4,11 +4,10 @@ import Chance from 'chance';
 
 import { ExpressAdapter } from '../server/express-adapter';
 import { MongoHelper } from '../database/helper-mongodb';
-import { UserRoute } from './user-router';
-import { BcryptHasher } from '../encrypter/bcrypt-hasher';
+import { UserRoute } from './signup-router';
 import { UserRepositoryDatabase } from '../repository/user-repository-database';
 import { UserControllerAdapter } from '../controller/user-controller-adapter';
-import { CreateUser } from '../../application/use-cases/create-user';
+import { CreateUser } from '../../application/use-cases/signup';
 
 const COLLECTION_NAME = 'users';
 
@@ -17,9 +16,8 @@ describe('# Route POST Create User Test Integfration', () => {
 
   const mongo = new MongoHelper();
   const app = new ExpressAdapter();
-  const bcrypterHasher = new BcryptHasher(12);
   const userRepository = new UserRepositoryDatabase(mongo);
-  const createUser = new CreateUser(userRepository, bcrypterHasher);
+  const createUser = new CreateUser(userRepository);
   const userController = new UserControllerAdapter(createUser);
   new UserRoute(app, userController);
 
@@ -52,7 +50,7 @@ describe('# Route POST Create User Test Integfration', () => {
 
   it('should create user', async () => {
     const { body: userId } = await request(app.getApp())
-      .post('/users')
+      .post('/signup')
       .send(input)
       .expect(201);
 
@@ -67,6 +65,6 @@ describe('# Route POST Create User Test Integfration', () => {
 
   it('should return 422 when internal server error', async () => {
     userRepository.save = jest.fn().mockRejectedValue(new Error());
-    await request(app.getApp()).post('/users').send(input).expect(422);
+    await request(app.getApp()).post('/signup').send(input).expect(422);
   });
 });

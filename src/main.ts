@@ -2,7 +2,7 @@ import * as dotenv from 'dotenv';
 
 import { MongoHelper } from './infra/database/helper-mongodb';
 import { ExpressAdapter } from './infra/server/express-adapter';
-import { UserRoute } from './infra/routes/user-router';
+import { UserRoute } from './infra/routes/signup-router';
 import { makeCreateUserController } from './infra/factories/user';
 
 const database = new MongoHelper();

@@ -1,17 +1,12 @@
+import bcrypt from 'bcrypt';
 import { InvalidFieldError } from '../errors/invalid-field-error';
-
-import { BcryptHasher } from '../../infra/encrypter/bcrypt-hasher';
 
 export class PasswordVO {
   private readonly _value: string;
-  private readonly _encrypter: BcryptHasher;
-  private readonly _salt: number;
+  private readonly _salt = 12;
 
-  constructor(password: string, salt: number) {
+  constructor(password: string) {
     this._value = password;
-    this._salt = salt
-    this._encrypter = new BcryptHasher(salt);
-
     this.validate();
   }
 
@@ -22,11 +17,11 @@ export class PasswordVO {
     if (!isValid) throw new InvalidFieldError('password');
   }
 
-  private async hash(): Promise<string> {
-    return await this._encrypter.hash(this._value);
+  async create(): Promise<string> {
+    return await bcrypt.hash(this._value, this._salt);
   }
 
-  async getHashedValue(): Promise<string> {
-    return await this.hash();
+  async verify(hash: string): Promise<boolean> {
+    return await bcrypt.compare(this._value, hash);
   }
 }
