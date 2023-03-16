@@ -44,7 +44,7 @@ describe('# Password Test Unit', () => {
     const password = new PasswordVO('P4ssW@rd');
     const storedHash = await password.create();
 
-    const isValid = await password.verify(storedHash);
+    const isValid = await password.validatePassword(storedHash);
     expect(isValid).toBeTruthy();
   });
 
@@ -52,7 +52,7 @@ describe('# Password Test Unit', () => {
     const password = new PasswordVO('P4ssW@rd');
     await password.create();
 
-    const isValid = await password.verify('invalid_hash');
+    const isValid = await password.validatePassword('invalid_hash');
     expect(isValid).toBeFalsy();
   });
 });

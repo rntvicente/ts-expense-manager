@@ -13,7 +13,7 @@ export class PasswordVO {
   private validate() {
     const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     const isValid = regex.test(this._value);
-
+    
     if (!isValid) throw new InvalidFieldError('password');
   }
 
@@ -21,7 +21,7 @@ export class PasswordVO {
     return await bcrypt.hash(this._value, this._salt);
   }
 
-  async verify(hash: string): Promise<boolean> {
+  async validatePassword(hash: string): Promise<boolean> {
     return await bcrypt.compare(this._value, hash);
   }
 }

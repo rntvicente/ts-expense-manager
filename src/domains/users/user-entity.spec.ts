@@ -32,7 +32,7 @@ describe('# Entity User Test Unit', () => {
 
   it('should throw error when not informe password', () => {
     expect(() => new User(firstName, lastName, email, '', id)).toThrow(
-      new Error('Missing Param: Password')
+      new Error('Invalid Field: password')
     );
   });
 

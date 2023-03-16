@@ -9,7 +9,7 @@ export class User {
   private readonly _firstName: string;
   private readonly _lastName: string;
   private readonly _email: EmailVO;
-  private readonly _password: string;
+  private readonly _password: PasswordVO;
 
   constructor(
     firstName: string,
@@ -22,7 +22,7 @@ export class User {
     this._firstName = firstName;
     this._lastName = lastName;
     this._email = new EmailVO(email);
-    this._password = password;
+    this._password = new PasswordVO(password);
 
     this.validate();
   }
@@ -49,9 +49,12 @@ export class User {
     return this._email.value;
   }
 
-  async getPassword() {
-    const passwordVO = new PasswordVO(this._password);
-    return await passwordVO.create();
+  async getPassword(): Promise<string> {
+    return await this._password.create();
+  }
+
+  async validatePassword(password: string): Promise<boolean> {
+    return this._password.validatePassword(password);
   }
 
   get fullName() {

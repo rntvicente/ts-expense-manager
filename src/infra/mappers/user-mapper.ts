@@ -13,12 +13,14 @@ export class UserMapper {
     );
   }
 
-  static toModel(user: User): UserModel {
+  static async toModel(user: User): Promise<UserModel> {
+    const password = await user.getPassword()
+
     return new UserModel(
       user.firstname,
       user.lastName,
       user.email,
-      user.password,
+      password,
       new ObjectId(user.id.value)
     );
   }
