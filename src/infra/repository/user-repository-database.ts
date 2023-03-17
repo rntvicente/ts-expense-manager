@@ -21,7 +21,7 @@ export class UserRepositoryDatabase implements UserRepository {
   }
 
   async save(user: User): Promise<string> {
-    const model = UserMapper.toModel(user);
+    const model = await UserMapper.toModel(user);
 
     const collection = await this.database.getCollection(COLLECTION_NAME);
     const { insertedId } = await collection.insertOne(model);

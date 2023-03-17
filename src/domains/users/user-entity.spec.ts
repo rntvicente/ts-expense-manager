@@ -12,45 +12,44 @@ describe('# Entity User Test Unit', () => {
   const email = chance.email();
   const password = 'P4ssw@rd';
 
-  it('should throw error when not informe firstname', () => {
-    expect(() => new User('', lastName, email, password, id)).toThrow(
-      new Error('Missing Param: First Name')
-    );
+  it('should throw error when not informe firstname', async () => {
+    await expect(() =>
+      User.create('', lastName, email, password, id)
+    ).rejects.toThrow(new Error('Missing Param: First Name'));
   });
 
-  it('should throw error when not informe lastname', () => {
-    expect(() => new User(firstName, '', email, password, id)).toThrow(
-      new Error('Missing Param: Last Name')
-    );
+  it('should throw error when not informe lastname', async () => {
+    await expect(() =>
+      User.create(firstName, '', email, password, id)
+    ).rejects.toThrow(new Error('Missing Param: Last Name'));
   });
 
-  it('should throw error when not informe email', () => {
-    expect(() => new User(firstName, lastName, '', password, id)).toThrow(
-      new Error('Invalid Field: E-mail')
-    );
+  it('should throw error when not informe email', async () => {
+    await expect(() =>
+      User.create(firstName, lastName, '', password, id)
+    ).rejects.toThrow(new Error('Invalid Field: E-mail'));
   });
 
-  it('should throw error when not informe password', () => {
-    expect(() => new User(firstName, lastName, email, '', id)).toThrow(
-      new Error('Invalid Field: password')
-    );
+  it('should throw error when not informe password', async () => {
+    await expect(() =>
+      User.create(firstName, lastName, email, '', id)
+    ).rejects.toThrow(new Error('Missing Param: Password'));
   });
 
-  it('should create User with Unique Entity ID', () => {
-    const user = new User(firstName, lastName, email, password);
+  it('should create User with Unique Entity ID', async () => {
+    const user = await User.create(firstName, lastName, email, password);
 
     expect(user.id).toBeInstanceOf(UniqueEntityIdVO);
   });
 
   it('should create User when informed id', async () => {
-    const user = new User(firstName, lastName, email, password, id);
-    const hashedPassword = await user.getPassword();
+    const user = await User.create(firstName, lastName, email, password, id);
 
     expect(user.id.toString()).toStrictEqual(id);
-    expect(user.firstname).toStrictEqual(firstName);
+    expect(user.firstName).toStrictEqual(firstName);
     expect(user.lastName).toStrictEqual(lastName);
-    expect(hashedPassword).toBeDefined();
-    expect(user.email).toStrictEqual(email);
+    expect(user.password).toBeDefined();
+    expect(user.email.value).toStrictEqual(email);
     expect(user.fullName).toStrictEqual(`${firstName} ${lastName}`);
   });
 });

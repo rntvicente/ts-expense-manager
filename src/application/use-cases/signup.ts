@@ -5,7 +5,7 @@ export class CreateUser {
   constructor(private readonly repository: UserRepository) {}
 
   async execute(input: Input): Promise<string> {
-    const newUser = new User(
+    const newUser = await User.create(
       input.firstName,
       input.lastName,
       input.email,

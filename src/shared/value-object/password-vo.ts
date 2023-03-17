@@ -2,26 +2,21 @@ import bcrypt from 'bcrypt';
 import { InvalidFieldError } from '../errors/invalid-field-error';
 
 export class PasswordVO {
-  private readonly _value: string;
-  private readonly _salt = 12;
+  private static readonly _salt = 12;
 
-  constructor(password: string) {
-    this._value = password;
-    this.validate();
-  }
+  constructor(readonly value: string) {}
 
-  private validate() {
+  static async create(password: string): Promise<PasswordVO> {
     const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    const isValid = regex.test(this._value);
-    
-    if (!isValid) throw new InvalidFieldError('password');
+    const isValid = regex.test(password);
+
+    if (!isValid) throw new InvalidFieldError('Password');
+
+    const hashed = await bcrypt.hash(password, this._salt);
+    return new PasswordVO(hashed);
   }
 
-  async create(): Promise<string> {
-    return await bcrypt.hash(this._value, this._salt);
-  }
-
-  async validatePassword(hash: string): Promise<boolean> {
-    return await bcrypt.compare(this._value, hash);
+  async validatePassword(password: string): Promise<boolean> {
+    return await bcrypt.compare(password, this.value);
   }
 }

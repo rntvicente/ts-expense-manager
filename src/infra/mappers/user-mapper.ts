@@ -1,4 +1,9 @@
 import { ObjectId } from 'mongodb';
+
+import { EmailVO } from '../../shared/value-object/email-vo';
+import { PasswordVO } from '../../shared/value-object/password-vo';
+import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
+
 import { User } from '../../domains/users/user-entity';
 import { UserModel } from '../models/user-model';
 
@@ -7,19 +12,20 @@ export class UserMapper {
     return new User(
       userModel.firstName,
       userModel.lastName,
-      userModel.email,
-      userModel.password,
-      userModel._id?.toString()
+      new EmailVO(userModel.email),
+      new PasswordVO(userModel.password),
+      new UniqueEntityIdVO(userModel._id)
     );
   }
 
   static async toModel(user: User): Promise<UserModel> {
-    const password = await user.getPassword()
+    const password = await user.password.value;
+    const email = await user.email.value;
 
     return new UserModel(
-      user.firstname,
+      user.firstName,
       user.lastName,
-      user.email,
+      email,
       password,
       new ObjectId(user.id.value)
     );

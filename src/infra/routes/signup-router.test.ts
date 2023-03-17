@@ -60,7 +60,7 @@ describe('# Route POST Create User Test Integfration', () => {
       _id: new ObjectId(userId)
     });
 
-    expect(insertedUser).toBeDefined();
+    expect(insertedUser.email).toStrictEqual(input.email);
   });
 
   it('should return 422 when internal server error', async () => {
