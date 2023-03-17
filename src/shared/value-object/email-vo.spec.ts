@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Chance from 'chance';
 
 import { EmailVO } from './email-vo';
