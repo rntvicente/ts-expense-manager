@@ -2,12 +2,12 @@ import { ObjectId } from 'mongodb';
 import request from 'supertest';
 import Chance from 'chance';
 
-import { ExpressAdapter } from '../server/express-adapter';
-import { MongoHelper } from '../database/helper-mongodb';
+import { ExpressAdapter } from '../../infra/server/express-adapter';
+import { MongoHelper } from '../../infra/database/helper-mongodb';
 import { UserRoute } from './signup-router';
 import { UserRepositoryDatabase } from '../repository/user-repository-database';
 import { UserControllerAdapter } from '../controller/user-controller-adapter';
-import { CreateUser } from '../../application/use-cases/signup';
+import { CreateUser } from '../application/use-cases/signup';
 
 const COLLECTION_NAME = 'users';
 

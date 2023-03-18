@@ -1,6 +1,6 @@
 import { Document, Filter, FindOptions } from 'mongodb';
 
-import { UserModel } from '../../infra/models/user-model';
+import { UserModel } from '../../repository/user-model';
 import { User } from '../../domains/users/user-entity';
 
 export interface UserRepository {

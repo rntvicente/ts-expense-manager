@@ -5,8 +5,8 @@ import { EmailVO } from '../../shared/value-object/email-vo';
 import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
 import { PasswordVO } from '../../shared/value-object/password-vo';
 
-import { User } from '../../domains/users/user-entity';
-import { UserModel } from '../models/user-model';
+import { User } from '../../auth/domains/users/user-entity';
+import { UserModel } from '../../auth/repository/user-model';
 import { UserMapper } from './user-mapper';
 
 describe('# Mapper User Test Unit', () => {

@@ -1,11 +1,11 @@
-import { MongoHelper } from '../database/helper-mongodb';
 import { Filter, Document, FindOptions } from 'mongodb';
 
-import { UserMapper } from '../mappers/user-mapper';
+import { MongoHelper } from '../../infra/database/helper-mongodb';
+import { UserMapper } from '../../infra/mappers/user-mapper';
+import { UserRepository } from '../../auth/application/repositories/user-repository';
+import { User } from '../../auth/domains/users/user-entity';
 
-import { UserRepository } from '../../application/repositories/user-repository';
-import { User } from '../../domains/users/user-entity';
-import { UserModel } from '../models/user-model';
+import { UserModel } from './user-model';
 
 const COLLECTION_NAME = 'users';
 

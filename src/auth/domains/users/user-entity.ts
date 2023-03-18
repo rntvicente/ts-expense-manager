@@ -1,8 +1,8 @@
-import { MissingParamError } from '../../shared/errors/missing-param-error';
+import { MissingParamError } from '../../../shared/errors/missing-param-error';
 
-import { EmailVO } from '../../shared/value-object/email-vo';
-import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
-import { PasswordVO } from '../../shared/value-object/password-vo';
+import { EmailVO } from '../../../shared/value-object/email-vo';
+import { UniqueEntityIdVO } from '../../../shared/value-object/unique-entity-id-vo';
+import { PasswordVO } from '../../../shared/value-object/password-vo';
 
 export class User {
   constructor(

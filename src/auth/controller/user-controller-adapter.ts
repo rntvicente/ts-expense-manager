@@ -1,7 +1,7 @@
-import { HttpRequest, HttpResponse } from '../server/http';
+import { HttpRequest, HttpResponse } from '../../infra/server/http';
 
-import { CreateUser } from '../../application/use-cases/signup';
-import { Controller } from './handle';
+import { CreateUser } from '../../auth/application/use-cases/signup';
+import { Controller } from '../../infra/controller/handle';
 
 export class UserControllerAdapter implements Controller {
   constructor(private readonly createUser: CreateUser) {}

@@ -1,6 +1,6 @@
 import Chance from 'chance';
 
-import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
+import { UniqueEntityIdVO } from '../../../shared/value-object/unique-entity-id-vo';
 import { User } from './user-entity';
 
 describe('# Entity User Test Unit', () => {

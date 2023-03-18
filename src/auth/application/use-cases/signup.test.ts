@@ -4,7 +4,7 @@ import { Document, Filter, FindOptions, ObjectId } from 'mongodb';
 
 import { UserRepository } from '../repositories/user-repository';
 import { User } from '../../domains/users/user-entity';
-import { UserModel } from '../../infra/models/user-model';
+import { UserModel } from '../../repository/user-model';
 
 import { CreateUser } from './signup';
 

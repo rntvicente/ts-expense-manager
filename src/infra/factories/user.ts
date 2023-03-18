@@ -1,8 +1,8 @@
-import { CreateUser } from '../../application/use-cases/signup';
+import { CreateUser } from '../../auth/application/use-cases/signup';
 
 import { MongoHelper } from '../database/helper-mongodb';
-import { UserControllerAdapter } from '../controller/user-controller-adapter';
-import { UserRepositoryDatabase } from '../repository/user-repository-database';
+import { UserControllerAdapter } from '../../auth/controller/user-controller-adapter';
+import { UserRepositoryDatabase } from '../../auth/repository/user-repository-database';
 
 export const makeCreateUserController = (
   database: MongoHelper

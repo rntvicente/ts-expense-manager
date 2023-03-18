@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { HttpServer } from '../server/http-server';
-import { Controller } from '../controller/handle';
+import { HttpServer } from '../../infra/server/http-server';
+import { Controller } from '../../infra/controller/handle';
 
 export class LoginRoute {
   constructor(

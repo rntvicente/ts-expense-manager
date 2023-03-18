@@ -4,8 +4,8 @@ import { EmailVO } from '../../shared/value-object/email-vo';
 import { PasswordVO } from '../../shared/value-object/password-vo';
 import { UniqueEntityIdVO } from '../../shared/value-object/unique-entity-id-vo';
 
-import { User } from '../../domains/users/user-entity';
-import { UserModel } from '../models/user-model';
+import { User } from '../../auth/domains/users/user-entity';
+import { UserModel } from '../../auth/repository/user-model';
 
 export class UserMapper {
   static toDomain(userModel: UserModel): User {
