@@ -9,5 +9,8 @@ export default {
   roots: ['<rootDir>/src'],
   transform: { '^.+\\.tsx?$': '@swc/jest' },
   preset: '@shelf/jest-mongodb',
-  setupFiles: ['dotenv/config']
+  setupFiles: ['dotenv/config'],
+  testEnvironmentOptions: {
+    timeZone: 'America/Sao_Paulo'
+  }
 };
