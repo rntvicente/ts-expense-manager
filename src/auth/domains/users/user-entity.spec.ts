@@ -51,5 +51,8 @@ describe('# Entity User Test Unit', () => {
     expect(user.password).toBeDefined();
     expect(user.email.value).toStrictEqual(email);
     expect(user.fullName).toStrictEqual(`${firstName} ${lastName}`);
+    expect(await user.validatePassword('password')).toBeFalsy();
+    expect(await user.validatePassword(password)).toBeTruthy();
+
   });
 });
