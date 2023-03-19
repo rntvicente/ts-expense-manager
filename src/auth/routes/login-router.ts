@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request } from 'express';
 
 import { HttpServer } from '../../infra/server/http-server';
 import { Controller } from '../../infra/controller/handle';
@@ -11,9 +11,8 @@ export class LoginRoute {
     httpServer.on(
       'post',
       '/login',
-      async function ({ body }: Request, res: Response, next: NextFunction) {
+      async function ({ body }: Request) {
         return await controller.handle({ body });
-        next();
       }
     );
   }
