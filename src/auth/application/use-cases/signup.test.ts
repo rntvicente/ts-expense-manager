@@ -6,7 +6,7 @@ import { UserRepository } from '../repositories/user-repository';
 import { User } from '../../domains/users/user-entity';
 import { UserModel } from '../../repository/user-model';
 
-import { CreateUser } from './signup';
+import { SignIn } from './signup';
 
 const chance = Chance();
 
@@ -33,7 +33,7 @@ const makeSUT = () => {
 
   const repositoryStub = makeRepository(mongoId);
 
-  const sut = new CreateUser(repositoryStub);
+  const sut = new SignIn(repositoryStub);
 
   return {
     mongoId,
