@@ -6,20 +6,20 @@ import { ExpressAdapter } from '../../infra/server/express-adapter';
 import { MongoHelper } from '../../infra/database/helper-mongodb';
 import { UserRoute } from './signup-router';
 import { UserRepositoryDatabase } from '../repository/user-repository-database';
-import { UserControllerAdapter } from '../controller/user-controller-adapter';
-import { CreateUser } from '../application/use-cases/signup';
+import { SignInControllerAdapter } from '../controller/signin-controller-adapter';
+import { SignIn } from '../application/use-cases/signup';
 
 const COLLECTION_NAME = 'users';
 
-describe('# Route POST Create User Test Integfration', () => {
+describe('# Route POST Sign In Test Integration', () => {
   const chance = Chance();
 
   const mongo = new MongoHelper();
   const app = new ExpressAdapter();
   const userRepository = new UserRepositoryDatabase(mongo);
-  const createUser = new CreateUser(userRepository);
-  const userController = new UserControllerAdapter(createUser);
-  new UserRoute(app, userController);
+  const signIn = new SignIn(userRepository);
+  const signInController = new SignInControllerAdapter(signIn);
+  new UserRoute(app, signInController);
 
   let collection;
 

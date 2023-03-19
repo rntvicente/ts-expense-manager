@@ -1,13 +1,13 @@
 import { HttpRequest, HttpResponse } from '../../infra/server/http';
 
-import { CreateUser } from '../../auth/application/use-cases/signup';
+import { SignIn } from '../application/use-cases/signup';
 import { Controller } from '../../infra/controller/handle';
 
-export class UserControllerAdapter implements Controller {
-  constructor(private readonly createUser: CreateUser) {}
+export class SignInControllerAdapter implements Controller {
+  constructor(private readonly signIn: SignIn) {}
 
   async handle({ body }: HttpRequest): Promise<HttpResponse> {
-    const userId = await this.createUser.execute(body);
+    const userId = await this.signIn.execute(body);
 
     return { statusCode: 201, body: userId };
   }

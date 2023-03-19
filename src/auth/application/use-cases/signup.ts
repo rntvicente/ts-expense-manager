@@ -1,7 +1,7 @@
 import { UserRepository } from '../repositories/user-repository';
 import { User } from '../../domains/users/user-entity';
 
-export class CreateUser {
+export class SignIn {
   constructor(private readonly repository: UserRepository) {}
 
   async execute(input: Input): Promise<string> {
