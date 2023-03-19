@@ -8,12 +8,8 @@ export class LoginRoute {
     readonly httpServer: HttpServer,
     readonly controller: Controller
   ) {
-    httpServer.on(
-      'post',
-      '/login',
-      async function ({ body }: Request) {
-        return await controller.handle({ body });
-      }
-    );
+    httpServer.on('post', '/login', async function ({ body }: Request) {
+      return await controller.handle({ body });
+    });
   }
 }
