@@ -28,5 +28,5 @@ Para criação desse projeto utilizamos as seguintes bibliotecas e framework
 - [MongoDB](https://www.mongodb.com/) - Banco de dados não relacion (NoSQL) em documentos
 - [Eslint](https://eslint.org/) - Analisador de código estático
 - [Prettier](https://prettier.io/) - Formatador de código
-- [Mocha](https://mochajs.org/) - Ferramenta de teste Javascript
+- [Jest](https://jestjs.io/pt-BR/) - Ferramenta de teste Javascript
 - [SonarQube](https://www.sonarqube.org/) - Analizador de código estático

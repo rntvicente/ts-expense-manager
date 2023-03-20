@@ -3,7 +3,7 @@ import { Controller } from '../../infra/controller/handle';
 
 import { CreateExpenses } from '../application/use-case/create-expense';
 
-export class AddExpensesControllerAdapter implements Controller {
+export class CreateExpensesControllerAdapter implements Controller {
   constructor(private readonly createExpenses: CreateExpenses) {}
 
   async handle({ body }: HttpRequest): Promise<HttpResponse> {

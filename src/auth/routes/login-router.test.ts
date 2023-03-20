@@ -1,6 +1,5 @@
 import request from 'supertest';
 import Chance from 'chance';
-import { decode } from 'jsonwebtoken';
 
 import { ExpressAdapter } from '../../infra/server/express-adapter';
 import { MongoHelper } from '../../infra/database/helper-mongodb';

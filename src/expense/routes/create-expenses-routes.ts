@@ -8,7 +8,7 @@ export class CreateExpenseRoute {
     readonly httpServer: HttpServer,
     readonly controller: Controller
   ) {
-    httpServer.on('post', '/expenses/add', async function ({ body }: Request) {
+    httpServer.on('post', '/expenses', async function ({ body }: Request) {
       return await controller.handle({ body });
     });
   }

@@ -16,42 +16,44 @@ describe('# Mapper User Test Unit', () => {
   const lastName = chance.last();
   const email = chance.email();
   const id = new ObjectId();
-  let user: User;
+  let userEntity: User;
+  let userModel: UserModel;
 
   beforeEach(async () => {
-    user = await User.create(
+    userEntity = await User.create(
       firstName,
       lastName,
       email,
       'P4ssw@rd',
       id.toString()
     );
-  });
 
-  it('should return instance User when call toDomain', async () => {
-    const model = new UserModel(
+    userModel = new UserModel(
       firstName,
       lastName,
       email,
-      user.password.value,
+      userEntity.password.value,
       id
     );
+  });
 
-    const userEntity = UserMapper.toDomain(model);
-    expect(userEntity.email).toBeInstanceOf(EmailVO);
-    expect(userEntity.firstName).toStrictEqual(firstName);
-    expect(userEntity.lastName).toStrictEqual(lastName);
-    expect(userEntity.id).toBeInstanceOf(UniqueEntityIdVO);
-    expect(userEntity.password).toBeInstanceOf(PasswordVO);
+  it('should return instance User when call toDomain', async () => {
+    const entity = UserMapper.toDomain(userModel);
+
+    expect(entity.email).toBeInstanceOf(EmailVO);
+    expect(entity.firstName).toStrictEqual(firstName);
+    expect(entity.lastName).toStrictEqual(lastName);
+    expect(entity.id).toBeInstanceOf(UniqueEntityIdVO);
+    expect(entity.password).toBeInstanceOf(PasswordVO);
   });
 
   it('should return instance User Model when call toModel', async () => {
-    const modelUser = await UserMapper.toModel(user);
+    const model = await UserMapper.toModel(userEntity);
 
-    expect(modelUser._id).toBeInstanceOf(ObjectId);
-    expect(modelUser.email).toStrictEqual(email);
-    expect(modelUser.firstName).toStrictEqual(firstName);
-    expect(modelUser.lastName).toStrictEqual(lastName);
-    expect(modelUser.password).toStrictEqual(user.password.value);
+    expect(model._id).toBeInstanceOf(ObjectId);
+    expect(model.email).toStrictEqual(email);
+    expect(model.firstName).toStrictEqual(firstName);
+    expect(model.lastName).toStrictEqual(lastName);
+    expect(model.password).toStrictEqual(userEntity.password.value);
   });
 });

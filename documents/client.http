@@ -2,10 +2,10 @@ POST http://localhost:3000/signup HTTP/1.1
 content-type: application/json
 
 {
-    "firstName": "Renato",
-    "lastName": "Vicente",
-    "email": "rntvicente@gmail.com",
-    "password": "P4ssW@rd"
+  "firstName": "Renato",
+  "lastName": "Vicente",
+  "email": "rntvicente@gmail.com",
+  "password": "P4ssW@rd"
 }
 
 ###
@@ -14,6 +14,18 @@ POST http://localhost:3000/login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "rntvicente@gmail.com.br",
-    "password": "P4ssWrd"
+  "email": "rntvicente@gmail.com.br",
+  "password": "P4ssWrd"
+}
+
+###
+
+POST http://localhost:3000/expenses HTTP/1.1
+content-type: application/json
+
+{
+  "userId": "6417a4d261e0bd3175040242",
+  "description": "alimento",
+  "value": 10.1,
+  "categoryId": "6417a4d261e0bd3175040242"
 }
