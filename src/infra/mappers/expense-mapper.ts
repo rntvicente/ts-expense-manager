@@ -13,7 +13,9 @@ export class ExpenseMapper {
       new UniqueEntityIdVO(model.categoryId),
       model.description,
       model.value,
-      model.createAt
+      model.purchaseDate,
+      model.createAt,
+      model.updateAt
     );
   }
 
@@ -23,7 +25,9 @@ export class ExpenseMapper {
       new ObjectId(entity.categoryId.value),
       entity.description,
       entity.value,
+      entity.purchaseDate,
       entity.createAt,
+      entity.updateAt,
       new ObjectId(entity.id.value)
     );
   }

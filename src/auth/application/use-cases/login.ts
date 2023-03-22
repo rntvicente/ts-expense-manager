@@ -1,7 +1,7 @@
 import { PasswordVO } from '../../../shared/value-object/password-vo';
 import { UserMapper } from '../../../infra/mappers/user-mapper';
 
-import { UserRepository } from '../repositories/user-repository';
+import { UserRepository } from '../repository/user-repository';
 import { GeneratorToken } from '../../domains/tokens/generator-token';
 
 export class Login {
@@ -13,7 +13,7 @@ export class Login {
   async execute(email: string, password: string): Promise<Output> {
     const storedUser = await this.repository.findOne({ email });
 
-    if (!storedUser) throw new Error(`Not found user by filter ${email}.`);
+    if (!storedUser) throw new Error(`Not found user by filter "${email}".`);
 
     const passwordVO = new PasswordVO(storedUser.password);
     const isValid = await passwordVO.validatePassword(password);

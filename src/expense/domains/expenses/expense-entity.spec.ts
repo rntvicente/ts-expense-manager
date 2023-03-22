@@ -42,12 +42,14 @@ describe('# Expenses Unit Test', () => {
 
   it('should create expense', () => {
     const createAt = new Date();
+    const purchaseDate = new Date();
 
     const expense = Expense.create(
       userId,
       categoryId,
       description,
       value,
+      purchaseDate,
       createAt
     );
 
@@ -57,6 +59,7 @@ describe('# Expenses Unit Test', () => {
     expect(expense.categoryId).toBeInstanceOf(UniqueEntityIdVO);
     expect(expense.description).toStrictEqual(description);
     expect(expense.value).toStrictEqual(value);
+    expect(expense.purchaseDate).toStrictEqual(purchaseDate);
     expect(expense.createAt).toStrictEqual(createAt);
   });
 });

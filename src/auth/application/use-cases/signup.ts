@@ -1,4 +1,4 @@
-import { UserRepository } from '../repositories/user-repository';
+import { UserRepository } from '../repository/user-repository';
 import { User } from '../../domains/users/user-entity';
 
 export class SignIn {

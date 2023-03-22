@@ -2,7 +2,7 @@ import { Filter, Document, FindOptions } from 'mongodb';
 
 import { MongoHelper } from '../../infra/database/helper-mongodb';
 import { UserMapper } from '../../infra/mappers/user-mapper';
-import { UserRepository } from '../../auth/application/repositories/user-repository';
+import { UserRepository } from '../application/repository/user-repository';
 import { User } from '../../auth/domains/users/user-entity';
 
 import { UserModel } from './user-model';

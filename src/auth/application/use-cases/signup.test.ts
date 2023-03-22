@@ -2,7 +2,7 @@
 import Chance from 'chance';
 import { Document, Filter, FindOptions, ObjectId } from 'mongodb';
 
-import { UserRepository } from '../repositories/user-repository';
+import { UserRepository } from '../repository/user-repository';
 import { User } from '../../domains/users/user-entity';
 import { UserModel } from '../../repository/user-model';
 

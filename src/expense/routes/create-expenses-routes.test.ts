@@ -28,7 +28,7 @@ describe('# Route POST Create Expenses Test Integration', () => {
     categoryId: new ObjectId().toString(),
     description: chance.word({ length: 25 }),
     value: 100.1,
-    createAt: chance.date()
+    purchaseDate: chance.date()
   };
 
   beforeAll(async () => {

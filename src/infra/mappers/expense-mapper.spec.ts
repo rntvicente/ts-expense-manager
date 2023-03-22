@@ -19,7 +19,9 @@ describe('# Expense Mapper Test unit', () => {
   const categoryId = new UniqueEntityIdVO();
   const description = chance.word({ length: 50 });
   const value = 100.1;
+  const purchaseDate = chance.date();
   const createAt = chance.date();
+  const updateAt = chance.date();
 
   beforeEach(() => {
     expenseEntity = new Expense(
@@ -28,7 +30,9 @@ describe('# Expense Mapper Test unit', () => {
       categoryId,
       description,
       value,
-      createAt
+      purchaseDate,
+      createAt,
+      updateAt
     );
 
     expenseModel = new ExpenseModel(
@@ -36,7 +40,9 @@ describe('# Expense Mapper Test unit', () => {
       new ObjectId(categoryId.value),
       description,
       value,
+      purchaseDate,
       createAt,
+      updateAt,
       new ObjectId(id.value)
     );
   });

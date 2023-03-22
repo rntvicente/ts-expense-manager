@@ -9,7 +9,9 @@ export class Expense {
     readonly categoryId: UniqueEntityIdVO,
     readonly description: string,
     readonly value: number,
-    readonly createAt: Date
+    readonly purchaseDate: Date,
+    readonly createAt: Date,
+    readonly updateAt?: Date
   ) {}
 
   static create(
@@ -17,6 +19,7 @@ export class Expense {
     categoryId: string,
     description: string,
     value: number,
+    purchaseDate = new Date(),
     createAt = new Date(),
     id?: string
   ): Expense {
@@ -31,6 +34,7 @@ export class Expense {
       new UniqueEntityIdVO(categoryId),
       description,
       value,
+      purchaseDate,
       createAt
     );
   }

@@ -1,13 +1,24 @@
-import { DatabaseHelper } from '../../infra/database/helper';
-import { ExpenseMapper } from '../../infra/mappers/expense-mapper'
+import { DatabaseHelper } from '../../infra/database/database-helper';
+import { ExpenseMapper } from '../../infra/mappers/expense-mapper';
 
 import { Expense } from '../domains/expenses/expense-entity';
-import { ExpensesRepository } from '../application/repositories/expenses-repository';
+import {
+  ExpenseFilter,
+  ExpensesRepository
+} from '../application/repository/expenses-repository';
 
 const COLLECTION_NAME = 'expenses';
 
 export class ExpenseRepositoryDataBase implements ExpensesRepository {
   constructor(private readonly database: DatabaseHelper) {}
+
+  async findOneAndUpdate(
+    filter: ExpenseFilter,
+    expense: Expense
+  ): Promise<void> {
+    const collection = await this.database.getCollection(COLLECTION_NAME);
+    await collection.findOneAndUpdate(filter, { $set: expense });
+  }
 
   async save(expense: Expense): Promise<string> {
     const model = await ExpenseMapper.toModel(expense);

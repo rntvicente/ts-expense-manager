@@ -1,9 +1,9 @@
-import { Filter, Document, FindOptions } from 'mongodb';
+import { Filter, Document } from 'mongodb';
 import { verify } from 'jsonwebtoken';
 import Chance from 'chance';
 
 import { UserModel } from '../../repository/user-model';
-import { UserRepository } from '../repositories/user-repository';
+import { UserRepository } from '../repository/user-repository';
 import { User } from '../../domains/users/user-entity';
 import { UserMapper } from '../../../infra/mappers/user-mapper';
 
@@ -16,13 +16,10 @@ const email = chance.email();
 const makeRepository = () => {
   class UserRepositoryStub implements UserRepository {
     async save(user: User): Promise<string> {
-      throw new Error('Method not implemented.');
+      return user.fullName;
     }
 
-    async findOne(
-      filter: Filter<Document>,
-      options?: FindOptions<Document> | undefined
-    ): Promise<UserModel | null> {
+    async findOne(filter: Filter<Document>): Promise<UserModel | null> {
       expect(filter).toEqual({ email });
 
       const user = await User.create(
@@ -52,7 +49,7 @@ describe('# Login test Integration', () => {
     repository.findOne = jest.fn().mockResolvedValueOnce(null);
 
     await expect(() => sut.execute(email, password)).rejects.toThrow(
-      new Error(`Not found user by filter ${email}.`)
+      new Error(`Not found user by filter "${email}".`)
     );
   });
 
@@ -73,7 +70,6 @@ describe('# Login test Integration', () => {
 
     verify(token, process.env.TOKEN_KEY, (err, decoded) => {
       expect(err).toBeNull();
-
       expect(decoded.email).toStrictEqual(email);
     });
   });
