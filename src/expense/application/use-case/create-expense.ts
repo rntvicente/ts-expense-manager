@@ -1,5 +1,5 @@
 import { Expense } from '../../domains/expenses/expense-entity';
-import { ExpensesRepository } from '../repositories/expenses-repository';
+import { ExpensesRepository } from '../repository/expenses-repository';
 
 export class CreateExpenses {
   constructor(private readonly repository: ExpensesRepository) {}

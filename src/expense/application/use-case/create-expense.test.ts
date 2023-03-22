@@ -4,7 +4,7 @@ import Chance from 'chance';
 import { UniqueEntityIdVO } from '../../../shared/value-object/unique-entity-id-vo';
 
 import { Expense } from '../../domains/expenses/expense-entity';
-import { ExpensesRepository } from '../repositories/expenses-repository';
+import { ExpensesRepository } from '../repository/expenses-repository';
 
 import { CreateExpenses } from './create-expense';
 
