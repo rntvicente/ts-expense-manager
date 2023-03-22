@@ -1,6 +1,6 @@
 import { MongoHelper } from '../database/helper-mongodb';
 
-import { ExpenseRepositoryDataBase } from '../../expense/repository/expense-repository';
+import { ExpenseRepositoryDataBase } from '../../expense/repository/expense-repository-database';
 import { CreateExpenses } from '../../expense/application/use-case/create-expense';
 import { CreateExpensesControllerAdapter } from '../../expense/controller/create-expenses-controller';
 

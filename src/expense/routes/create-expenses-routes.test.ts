@@ -7,7 +7,7 @@ import { CreateExpenseRoute } from './create-expenses-routes';
 
 import { CreateExpenses } from '../application/use-case/create-expense';
 import { CreateExpensesControllerAdapter } from '../controller/create-expenses-controller';
-import { ExpenseRepositoryDataBase } from '../repository/expense-repository';
+import { ExpenseRepositoryDataBase } from '../repository/expense-repository-database';
 import { ObjectId } from 'mongodb';
 
 describe('# Route POST Create Expenses Test Integration', () => {

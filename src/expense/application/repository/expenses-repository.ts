@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongodb';
 
 import { Expense } from '../../domains/expenses/expense-entity';
+import { ExpenseModel } from '../../repository/expense-model';
 
 export type ExpenseFilter = {
   _id?: ObjectId;
@@ -9,9 +10,18 @@ export type ExpenseFilter = {
   description?: string;
   value?: number;
   createAt?: Date;
-}
+};
+
+export type ExpenseUpdate = {
+  categoryId?: ObjectId;
+  description?: string;
+  value?: number;
+  purchaseDate?: Date;
+  updateAt: Date;
+};
 
 export interface ExpensesRepository {
   save(expense: Expense): Promise<string>;
-  findOneAndUpdate(filter: ExpenseFilter, expense: Expense): Promise<void>;
+  findOne(filter: ExpenseFilter): Promise<ExpenseModel | null>;
+  findOneAndUpdate(filter: ExpenseFilter, model: ExpenseModel): Promise<void>;
 }
