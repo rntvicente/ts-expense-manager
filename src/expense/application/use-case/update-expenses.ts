@@ -18,14 +18,16 @@ export class UpdateExpenses {
     if (!ObjectId.isValid(expenseId)) throw new InvalidFieldError('ExpenseId');
 
     const filter = { _id: new ObjectId(expenseId) };
-    
+
     const expenseModel = await this.repository.findOne(filter);
 
     if (!expenseModel) throw new Error(`Expense not found to id ${expenseId}.`);
 
     const id = new UniqueEntityIdVO(expenseModel._id);
     const userId = new UniqueEntityIdVO(expenseModel.userId);
-    const categoryId = new UniqueEntityIdVO(document.categoryId || expenseModel.categoryId);
+    const categoryId = new UniqueEntityIdVO(
+      document.categoryId || expenseModel.categoryId
+    );
     const description = document.description || expenseModel.description;
     const value = document.value || expenseModel.value;
     const purchaseDate = document.purchaseDate || expenseModel.purchaseDate;

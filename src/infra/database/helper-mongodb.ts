@@ -1,6 +1,6 @@
 import { Collection, MongoClient } from 'mongodb';
 
-import { DatabaseHelper } from './helper';
+import { DatabaseHelper } from './database-helper';
 
 export class MongoHelper implements DatabaseHelper {
   private _client: MongoClient | undefined;

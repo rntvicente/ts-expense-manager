@@ -17,7 +17,6 @@ export type ExpenseUpdate = {
   description?: string;
   value?: number;
   purchaseDate?: Date;
-  updateAt: Date;
 };
 
 export interface ExpensesRepository {
