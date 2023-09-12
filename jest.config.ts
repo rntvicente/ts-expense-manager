@@ -7,7 +7,7 @@ export default {
   coverageReporters: ['json', 'text', 'lcov', 'clover'],
   coverageThreshold: undefined,
   roots: ['<rootDir>/src'],
-  transform: { '^.+\\.tsx?$': '@swc/jest' },
+  transform: { '^.+\\.ts?$': '@swc/jest' },
   preset: '@shelf/jest-mongodb',
   setupFiles: ['dotenv/config'],
   testEnvironmentOptions: {

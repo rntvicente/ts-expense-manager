@@ -12,6 +12,14 @@
     "skipLibCheck": true,
     "noImplicitAny": false
   },
-  "include": ["src/**/*.ts", "test/**/*.spec.ts", "test/**/*.test.ts"],
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.spec.ts",
+    "test/**/*.test.ts",
+    "jest.config.ts",
+    "jest-unit-config.ts",
+    "jest-integration-config.ts",
+    "jest-mongodb-config.ts"
+  ],
   "exclude": ["node_modules", "dist"]
 }
