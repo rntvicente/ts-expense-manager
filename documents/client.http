@@ -26,6 +26,6 @@ content-type: application/json
 {
   "userId": "6417a4d261e0bd3175040242",
   "description": "alimento",
-  "value": 10.1,
+  "value": 10.99,
   "categoryId": "6417a4d261e0bd3175040242"
 }
