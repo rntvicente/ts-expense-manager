@@ -23,4 +23,5 @@ export interface ExpensesRepository {
   save(expense: Expense): Promise<string>;
   findOne(filter: ExpenseFilter): Promise<ExpenseModel | null>;
   findOneAndUpdate(filter: ExpenseFilter, model: ExpenseModel): Promise<void>;
+  findAndDelete(id: ObjectId): Promise<void>;
 }

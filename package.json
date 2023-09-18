@@ -4,10 +4,12 @@
   "description": "",
   "main": "main.ts",
   "scripts": {
+    "audit": "npm audit --audit-level=moderate",
     "lint": "npx eslint ./src --ext .ts,.tsx",
     "test": "jest --setupFiles dotenv/config --passWithNoTests --runInBand --no-cache",
     "test:unit": "npm test -- --watchAll -c jest-unit-config.ts",
     "test:integration": "npm test -- --watchAll -c jest-integration-config.ts",
+    "test:ci": "npm run audit && ./node_modules/.bin/jest --runInBand --coverage --verbose",
     "start": "sucrase-node src/main.ts"
   },
   "keywords": [],
